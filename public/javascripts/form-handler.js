@@ -31,8 +31,14 @@ function FormHandler($form, $jsonConfig) {
         return email;
     }
 
-    this.getAction = function ($form) {
-        var action = $form.attr('data-action');
+    this.getAction = function () {
+        var action = '';
+
+        if(this.$jsonConfig) {
+            if (this.$jsonConfig.hasOwnProperty('action')) {
+                action = this.$jsonConfig.action;
+            }
+        }
 
         return action;
     }
@@ -101,7 +107,7 @@ function FormHandler($form, $jsonConfig) {
     };
 
     $(this.$form).on('click', this.submitCssClass, function () {
-        var action = ThisClass.getAction(ThisClass.$form);
+        var action = ThisClass.getAction();
         var formJsonData = ThisClass.formToJson($form);
 
         ThisClass.action(
@@ -151,6 +157,7 @@ $(document).ready(function () {
     $('.form-handler').each(function () {
         $(this).formHandler({
             'email': 'Zm9ybWhhbmRsZXIuZGVtb0BnbWFpbC5jb20=',
+            'action': 'email',
             'success': function (data) {
                 console.log(data);
             },
