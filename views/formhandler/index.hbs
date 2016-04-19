@@ -1,80 +1,98 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="well">
-                <form class="form-horizontal form-handler" data-action="email">
-                    <fieldset>
-                        <legend>Legend</legend>
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" id="inputEmail" data-label="Email" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                            <div class="col-lg-10">
-                                <input type="password" class="form-control" id="inputPassword" data-label="Password" placeholder="Password">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Checkbox
-                                    </label>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="well">
+                    <form class="form-horizontal form-handler" data-action="email">
+                        <fieldset>
+                            <legend>Legend</legend>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 control-label">Your Email</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="inputEmail" data-label="Email" placeholder="Email">
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="textArea" data-label="Text Area"></textarea>
-                                <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Radios</label>
-                            <div class="col-lg-10">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" data-label="Option one is this">
-                                        Option one is this
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" data-label="Option two can be something else">
-                                        Option two can be something else
-                                    </label>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 control-label">Products Interested</label>
+                                <div class="col-lg-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Apple
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Orange
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="select" class="col-lg-2 control-label">Selects</label>
-                            <div class="col-lg-10">
-                                <select class="form-control" id="select" data-label="single select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                                <br>
-                                <select multiple="" class="form-control" data-label="multi select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                            <div class="form-group">
+                                <label for="select" class="col-lg-2 control-label">Quantities</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control" id="select" data-label="single select">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-10 col-lg-offset-2">
-                                <div class="btn btn-primary submit">Submit</div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Delivery Options</label>
+                                <div class="col-lg-10">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> Pick up
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Delivery
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </fieldset>
-                </form>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Delivery Day</label>
+                                <div class="col-lg-10">
+                                    <div class="radio">
+                                        <div class="btn-group" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input type="radio" name="options" autocomplete="off" checked> Monday
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input type="radio" name="options" autocomplete="off"> Tuesday
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input type="radio" name="options" autocomplete="off"> Wednesday
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input type="radio" name="options" autocomplete="off"> Thursday
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input type="radio" name="options" autocomplete="off"> Friday
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="textArea" class="col-lg-2 control-label">Instructions</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" rows="3" id="textArea" data-label="Instructions"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <div class="btn btn-primary submit">Submit</div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
