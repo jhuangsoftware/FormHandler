@@ -1,31 +1,59 @@
-$(document).ready(function () {
+function FormHandler($form, $jsonConfig) {
+    var ThisClass = this;
+    this.$form = $form;
+    this.submitCssClass = '.submit';
+    this.$jsonConfig = $jsonConfig;
 
-});
-
-function FormHandler() {
-    this.formHandlerCssClass = '.form-handler';
     this.actions = [
         {
             'name': 'email',
-            'url': '//localhost:3000/send/email'
+            'url': '//localhost:3000/formhandler/send/email'
         },
         {
             'name': 'database',
-            'url': '//localhost:3000/send/database'
+            'url': '//localhost:3000/formhandler/send/database'
         }
     ];
 
-    this.getLabel = function ($element) {
-        var label = $element.prop('name');
+    this.getCurrentUrl = function () {
+        return window.location.href;
+    }
 
-        if (label) {
-            label = $element.prop('data-label');
+    this.getEmail = function () {
+        var email = '';
+
+        if(this.$jsonConfig) {
+            if (this.$jsonConfig.hasOwnProperty('email')) {
+                email = this.$jsonConfig.email;
+            }
         }
 
+        return email;
+    }
+
+    this.getAction = function ($form) {
+        var action = $form.attr('data-action');
+
+        return action;
+    }
+
+    this.getLabel = function ($element) {
+        var label = $element.prop('name');
+        var labelData = $element.attr('data-label');
+        var labelParent = $element.parent('label').text();
+
+        if (labelData) {
+            label = labelData;
+        }
+
+        if (labelParent) {
+            label = labelParent;
+        }
+
+        // nice the label text
         if (label) {
-            $element.parent('label').each(function () {
-                label = $(this).text();
-            });
+            label = label.replace(/\r?\n|\r/g, '');
+            label = $.trim(label);
         }
 
         return label;
@@ -35,10 +63,10 @@ function FormHandler() {
         var data = '';
         var elementType = $element.prop('nodeName');
 
-        switch (elementType) {
+        switch (elementType.toLowerCase()) {
             case 'input':
-                if ($element.is(':checbox, :radio')) {
-                    data = ($element.is(':checked') == true ? 'true' : 'no');
+                if ($element.is(':checkbox, :radio')) {
+                    data = ($element.is(':checked') == true ? 'true' : 'false');
                 } else {
                     data = $element.val();
                 }
@@ -56,15 +84,48 @@ function FormHandler() {
 
         return data;
     };
+
+    this.action = function (action, jsonData, successCallbackFunc, errorCallbackFunc) {
+        $.each(this.actions, function () {
+            if (this.name === action) {
+                $.ajax({
+                    type: 'POST',
+                    url: this.url,
+                    data: jsonData,
+                    success: successCallbackFunc,
+                    error: errorCallbackFunc,
+                    dataType: 'json'
+                });
+            }
+        });
+    };
+
+    $(this.$form).on('click', this.submitCssClass, function () {
+        var action = ThisClass.getAction(ThisClass.$form);
+        var formJsonData = ThisClass.formToJson($form);
+
+        ThisClass.action(
+            action,
+            {'data': JSON.stringify(formJsonData)},
+            function (data) {
+                if ($jsonConfig.hasOwnProperty('success')) {
+                    $jsonConfig.success(data);
+                }
+            },
+            function () {
+                if ($jsonConfig.hasOwnProperty('error')) {
+                    $jsonConfig.error();
+                }
+            }
+        )
+    });
 }
-
-FormHandler.prototype.init = function (formHandlerCssClass) {
-
-};
 
 FormHandler.prototype.formToJson = function ($form) {
     var ThisClass = this;
     var formJson = {
+        'url': this.getCurrentUrl(),
+        'email': this.getEmail(),
         'form': []
     };
 
@@ -80,16 +141,22 @@ FormHandler.prototype.formToJson = function ($form) {
     return formJson;
 };
 
-FormHandler.prototype.action = function (action, jsonData, callbackFunc) {
-    $.each(this.actions, function () {
-        if (this.name === action) {
-            $.ajax({
-                type: 'POST',
-                url: this.url,
-                data: jsonData,
-                success: callbackFunc,
-                dataType: 'json'
-            });
-        }
+$.fn.extend({
+    formHandler: function ($jsonConfig) {
+        var FormHandlerObject = new FormHandler($(this), $jsonConfig);
+    }
+});
+
+$(document).ready(function () {
+    $('.form-handler').each(function () {
+        $(this).formHandler({
+            'email': 'Zm9ybWhhbmRsZXIuZGVtb0BnbWFpbC5jb20=',
+            'success': function (data) {
+                console.log(data);
+            },
+            'error': function () {
+                console.log('error');
+            }
+        });
     });
-};
+});
