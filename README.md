@@ -18,3 +18,17 @@ A client side JavaScript utility class, combined with a node.js server side hand
 ```
 
 ## Initialize &lt;Form&gt; using .formHandler()
+```sh
+$('.form-handler').each(function () {
+    $(this).formHandler({
+        'email': 'Zm9ybWhhbmRsZXIuZGVtb0BnbWFpbC5jb20=',
+        'action': 'email',
+        'success': function (data) {
+            console.log(data);
+        },
+        'error': function () {
+            console.log('error');
+        }
+    });
+});
+```
