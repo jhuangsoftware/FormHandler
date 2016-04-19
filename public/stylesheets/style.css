@@ -1,8 +1,18 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #bbbbbb;
 }
 
 a {
   color: #00B7FF;
+}
+
+.intro-header {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: url('../images/intro-bg.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.well {
+  background-color: #FFFFFF;
 }
