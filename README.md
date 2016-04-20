@@ -1,15 +1,17 @@
 # FormHandler
 A client side JavaScript utility class, combined with a node.js server side handler, to process and store form data in emails or databases.
 
+<img src="https://raw.githubusercontent.com/jhuangsoftware/FormHandler/master/public/screenshots/Capture.PNG">
+
 # Getting Started Client Side
 
 ## Include Client Side JavaScript
-```sh
+```html
 <script src="javascripts/form-handler.js"></script>
 ```
 
 ## Assign .submit to action button in &lt;Form&gt;
-```sh
+```html
 <form class="form-horizontal form-handler">
   ...
   <div class="btn btn-primary submit">Submit</div>
@@ -18,7 +20,7 @@ A client side JavaScript utility class, combined with a node.js server side hand
 ```
 
 ## Initialize &lt;Form&gt; using .formHandler()
-```sh
+```JavaScript
 $('.form-handler').each(function () {
     $(this).formHandler({
         'action': 'email',
