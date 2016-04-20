@@ -1,7 +1,7 @@
 # FormHandler
 A client side JavaScript utility class, combined with a node.js server side handler, to process and store form data in emails or databases.
 
-# Getting Started
+# Getting Started Client Side
 
 ## Include Client Side JavaScript
 ```sh
@@ -48,3 +48,19 @@ A user defined function to process server response in event of successful form s
 
 ### error
 A user defined function to process server response in event of failed form submission.
+
+# Getting Started Server Side
+
+## Install Node.js
+Install Node.js from https://nodejs.org/en/
+
+## Compile Node.js Project
+```sh
+cd [project directory]
+npm install
+```
+
+## Start Node.js
+```sh
+node ./bin/www
+```
